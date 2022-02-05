@@ -11,7 +11,7 @@ final recData = objectbox.store.box<Record>();
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-    // setWindowTitle('BMI Calc');
+    setWindowTitle('BMI Calc');
     setWindowMinSize(const Size(400, 600));
     setWindowMaxSize(const Size(400, 600));
   }
