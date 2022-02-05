@@ -1,7 +1,7 @@
 # BMI Calculator
 
 coding by Dart/flutter  
-simple BMI calculator with add/remove functions
+simple BMI calculator with add/remove functions  
 run on android/linux  
 database:objectbox
 
