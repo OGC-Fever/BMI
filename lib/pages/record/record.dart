@@ -43,16 +43,6 @@ class _RecodePageState extends State<RecordPage> {
         itemCount: recData.count(),
         itemBuilder: (context, index) {
           return GestureDetector(
-            onTap: null,
-            // () {
-            //   showDialog(
-            //       context: context,
-            //       builder: (context) {
-            //         return const AlertDialog(
-            //           content: Text('Delete?'),
-            //         );
-            //       });
-            // },
             onLongPress: () {
               showDialog(
                   context: context,
@@ -90,76 +80,128 @@ class _RecodePageState extends State<RecordPage> {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        recData.getAll()[index].date,
-                        style: const TextStyle(fontSize: 25),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      const Expanded(
-                        flex: 1,
-                        child: Text(
-                          "height:",
-                          style: TextStyle(fontSize: 20),
+                      Expanded(
+                        flex: 2,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "No.${(index + 1)}",
+                            style: const TextStyle(fontSize: 30),
+                          ),
                         ),
                       ),
                       Expanded(
-                        flex: 1,
-                        child: Text(
-                          removeTail(recData.getAll()[index].height.toString()),
-                          style: const TextStyle(fontSize: 20),
-                        ),
-                      ),
-                      const Expanded(
-                        flex: 1,
-                        child: Text(
-                          "BMI:",
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          removeTail(recData.getAll()[index].bmi.toString()),
-                          style: TextStyle(
-                              color: Color(recData.getAll()[index].color),
-                              fontSize: 20),
+                        flex: 4,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            recData.getAll()[index].date,
+                            style: const TextStyle(fontSize: 20),
+                          ),
                         ),
                       ),
                     ],
                   ),
                   Row(
+                    children: const [
+                      Expanded(child: Divider()),
+                    ],
+                  ),
+                  Row(
                     children: [
                       const Expanded(
-                        flex: 1,
-                        child: Text(
-                          "weight:",
-                          style: TextStyle(fontSize: 20),
+                        flex: 2,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "height",
+                            style: TextStyle(fontSize: 20),
+                          ),
                         ),
                       ),
                       Expanded(
                         flex: 1,
-                        child: Text(
-                          removeTail(recData.getAll()[index].weight.toString()),
-                          style: const TextStyle(fontSize: 20),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            removeTail(
+                                recData.getAll()[index].height.toString()),
+                            style: const TextStyle(fontSize: 20),
+                          ),
                         ),
                       ),
                       const Expanded(
                         flex: 1,
-                        child: Text(
-                          "note:",
-                          style: TextStyle(fontSize: 20),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "BMI",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            removeTail(recData.getAll()[index].bmi.toString()),
+                            style: TextStyle(
+                                color: Color(recData.getAll()[index].color),
+                                fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: const [
+                      Expanded(child: Divider()),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Expanded(
+                        flex: 2,
+                        child: Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "weight",
+                            style: TextStyle(fontSize: 20),
+                          ),
                         ),
                       ),
                       Expanded(
                         flex: 1,
-                        child: Text(
-                          recData.getAll()[index].note.toString(),
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Color(recData.getAll()[index].color)),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            removeTail(
+                                recData.getAll()[index].weight.toString()),
+                            style: const TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      ),
+                      const Expanded(
+                        flex: 1,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "note",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            recData.getAll()[index].note.toString(),
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Color(recData.getAll()[index].color)),
+                          ),
                         ),
                       ),
                     ],

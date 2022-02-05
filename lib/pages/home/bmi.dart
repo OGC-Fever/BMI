@@ -91,8 +91,8 @@ class BMIState extends State<BMI> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        inputField(10, "身高 :", 20, heightCtrler, "cm", heightFocusNode),
-        inputField(10, "體重 :", 20, weightCtrler, "kg", weightFocusNode),
+        inputField(10, "身高", 20, heightCtrler, "cm", heightFocusNode),
+        inputField(10, "體重", 20, weightCtrler, "kg", weightFocusNode),
         Padding(
           padding: const EdgeInsets.all(10),
           child: Row(
@@ -105,10 +105,10 @@ class BMIState extends State<BMI> {
           ),
         ),
         divLine(10, _divColor, 2),
-        msg(10, "BMI:", _status.contains(".0") ? _status.split(".")[0] : _status,
+        msg(10, "BMI", _status.contains(".0") ? _status.split(".")[0] : _status,
             20, _color),
         divLine(10, _divColor, 2),
-        msg(10, "Note:", _note, 20, _color),
+        msg(10, "Note", _note, 20, _color),
       ],
     );
   }
