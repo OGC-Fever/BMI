@@ -12,7 +12,7 @@ class RecordPage extends StatefulWidget {
 
 class _RecodePageState extends State<RecordPage> {
   @override
-  Widget build(BuildContext context) {
+  Widget build(context) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
@@ -20,99 +20,154 @@ class _RecodePageState extends State<RecordPage> {
         ),
         body: recData.count() > 0 ? recordList() : nullList());
   }
-}
 
-Widget nullList() {
-  return const Center(
-      child: Text(
-    "~No Data~",
-    style: TextStyle(fontSize: 30),
-  ));
-}
+  void delRec(id) {
+    recData.remove(id);
+    setState(() {});
+  }
 
-Widget recordList() {
-  return ListView.builder(
-    itemCount: recData.count(),
-    itemBuilder: (context, index) {
-      return Card(
-        child: ListTile(
-          onLongPress: () {
-            recData.remove(index + 1);
-            recordList();
-          },
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text("BMI : "),
-              Text(
-                recData.get(index + 1) != null
-                    ? recData.get(index + 1)!.bmi.toString()
-                    : "null",
-                style: TextStyle(
-                    color: recData.get(index + 1) != null
-                        ? Color(recData.get(index + 1)!.color)
-                        : Colors.black),
-              )
-            ],
-          ),
-          //   subtitle: Column(
-          //     children: [
-          //       const Divider(),
-          //       Row(
-          //         children: [
-          //           const Expanded(flex: 1, child: Text("Height")),
-          //           Expanded(
-          //               flex: 1,
-          //               child: Center(
-          //                   child:
-          //                       Text(recData.get(index + 1)!.height.toString()))),
-          //           const Expanded(flex: 1, child: Center(child: Text("Date"))),
-          //         ],
-          //       ),
-          //       const Divider(),
-          //       Row(
-          //         children: [
-          //           const Expanded(flex: 1, child: Text("Weight")),
-          //           Expanded(
-          //               flex: 1,
-          //               child: Center(
-          //                 child: Text(
-          //                   recData.get(index + 1)!.weight.toString(),
-          //                 ),
-          //               )),
-          //           Expanded(
-          //             flex: 1,
-          //             child: Center(
-          //               child: Text(DateFormat("yyyy/MM/dd")
-          //                   .format(recData.get(index + 1)!.datetime)),
-          //             ),
-          //           ),
-          //         ],
-          //       ),
-          //       const Divider(),
-          //       Row(
-          //         children: [
-          //           const Expanded(flex: 1, child: Text("Note")),
-          //           Expanded(
-          //               flex: 1,
-          //               child: Center(
-          //                   child: Text(
-          //                 recData.get(index + 1)!.note.toString(),
-          //                 style: TextStyle(
-          //                     color: Color(recData.get(index + 1)!.color)),
-          //               ))),
-          //           Expanded(
-          //               flex: 1,
-          //               child: Center(
-          //                 child: Text(DateFormat("HH:mm E")
-          //                     .format(recData.get(index + 1)!.datetime)),
-          //               ))
-          //         ],
-          //       ),
-          //     ],
-          //   ),
-        ),
-      );
-    },
-  );
+  String removeTail(input) {
+    return input.contains(".0") ? input.split(".")[0] : input;
+  }
+
+  Widget nullList() {
+    return const Center(
+        child: Text(
+      "~No Data~",
+      style: TextStyle(fontSize: 30),
+    ));
+  }
+
+  Widget recordList() {
+    return ListView.builder(
+        itemCount: recData.count(),
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: null,
+            // () {
+            //   showDialog(
+            //       context: context,
+            //       builder: (context) {
+            //         return const AlertDialog(
+            //           content: Text('Delete?'),
+            //         );
+            //       });
+            // },
+            onLongPress: () {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: const Text('Delete?'),
+                      actions: [
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                            delRec(recData.getAll()[index].id);
+                          },
+                          child: const Text("Yes"),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.red,
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: const Text("No"),
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.blue,
+                          ),
+                        ),
+                      ],
+                    );
+                  });
+            },
+            child: Card(
+                child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Text(
+                        recData.getAll()[index].date,
+                        style: const TextStyle(fontSize: 25),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Expanded(
+                        flex: 1,
+                        child: Text(
+                          "height:",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          removeTail(recData.getAll()[index].height.toString()),
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      ),
+                      const Expanded(
+                        flex: 1,
+                        child: Text(
+                          "BMI:",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          removeTail(recData.getAll()[index].bmi.toString()),
+                          style: TextStyle(
+                              color: Color(recData.getAll()[index].color),
+                              fontSize: 20),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Expanded(
+                        flex: 1,
+                        child: Text(
+                          "weight:",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          removeTail(recData.getAll()[index].weight.toString()),
+                          style: const TextStyle(fontSize: 20),
+                        ),
+                      ),
+                      const Expanded(
+                        flex: 1,
+                        child: Text(
+                          "note:",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          recData.getAll()[index].note.toString(),
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Color(recData.getAll()[index].color)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            )),
+          );
+        });
+  }
 }

@@ -4,51 +4,51 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:6742598759972724658",
-      "lastPropertyId": "8:2668771283279326999",
+      "id": "1:368019016134568854",
+      "lastPropertyId": "7:8880926543354085993",
       "name": "Record",
       "properties": [
         {
-          "id": "1:3585074498711184982",
+          "id": "1:8402119108174533595",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "3:2410833698300331369",
+          "id": "2:7943839443533735301",
           "name": "note",
           "type": 9
         },
         {
-          "id": "4:463324417872712446",
-          "name": "datetime",
-          "type": 10
+          "id": "3:4890718636583680040",
+          "name": "date",
+          "type": 9
         },
         {
-          "id": "5:8836328859495089543",
+          "id": "4:4670724783795920715",
+          "name": "color",
+          "type": 6
+        },
+        {
+          "id": "5:2061651241575220677",
           "name": "height",
           "type": 8
         },
         {
-          "id": "6:7983482844272757491",
+          "id": "6:6631860985013533483",
           "name": "weight",
           "type": 8
         },
         {
-          "id": "7:2838340879941898238",
+          "id": "7:8880926543354085993",
           "name": "bmi",
           "type": 8
-        },
-        {
-          "id": "8:2668771283279326999",
-          "name": "color",
-          "type": 6
         }
       ],
       "relations": []
     }
   ],
-  "lastEntityId": "1:6742598759972724658",
+  "lastEntityId": "1:368019016134568854",
   "lastIndexId": "0:0",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
@@ -56,9 +56,7 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [
-    9033058554304056664
-  ],
+  "retiredPropertyUids": [],
   "retiredRelationUids": [],
   "version": 1
 }

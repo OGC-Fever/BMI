@@ -1,14 +1,21 @@
+import 'dart:io';
+
 import 'package:bmi/objectbox.g.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi/pages/home/home.dart';
+import 'package:window_size/window_size.dart';
 
-late ObjectBox objectbox;
+late final ObjectBox objectbox;
 final recData = objectbox.store.box<Record>();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+    // setWindowTitle('BMI Calc');
+    setWindowMinSize(const Size(400, 600));
+    setWindowMaxSize(const Size(400, 600));
+  }
   objectbox = await ObjectBox.create();
-
   runApp(const Hello());
 }
 
@@ -30,14 +37,14 @@ class Record {
   double weight;
   double bmi;
   String note;
-  DateTime datetime = DateTime.now();
+  String date;
   int color;
   Record(
       {required this.height,
       required this.weight,
       required this.bmi,
       required this.note,
-      datetime,
+      required this.date,
       required this.color});
 }
 

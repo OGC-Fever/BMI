@@ -37,7 +37,6 @@ class BMIState extends State<BMI> {
         setState(() {
           _status = _bmi.toString();
           _color = Theme.of(context).colorScheme.onPrimary;
-
           if (_bmi < 18.5) {
             _note = "太瘦了";
             _color = Colors.orange;
@@ -62,7 +61,7 @@ class BMIState extends State<BMI> {
               weight: _weight,
               bmi: _bmi,
               note: _note,
-              datetime: DateTime.now(),
+              date: DateTime.now().toString().split(".")[0],
               color: _color.value));
         });
       }
@@ -100,13 +99,14 @@ class BMIState extends State<BMI> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Spacer(flex: 1),
-              actBtn(2, () => calc(), "計算", Colors.blue, 20, 20, 10),
-              actBtn(2, () => clean(), "清除", Colors.red, 20, 20, 10),
+              actBtn(5, () => calc(), "計算", Colors.blue, 20, 20, 5),
+              actBtn(5, () => clean(), "清除", Colors.red, 20, 20, 5),
             ],
           ),
         ),
         divLine(10, _divColor, 2),
-        msg(10, "BMI:", _status, 20, _color),
+        msg(10, "BMI:", _status.contains(".0") ? _status.split(".")[0] : _status,
+            20, _color),
         divLine(10, _divColor, 2),
         msg(10, "Note:", _note, 20, _color),
       ],
